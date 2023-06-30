@@ -30,7 +30,7 @@ const IconBox = styled(Box)`
 `;
 
 const Archive = ({ archive }) => {
-  const { notes, setNotes, archiveNotes, setArchiveNotes, setDeletedNotes } =
+  const { setNotes, archiveNotes, setArchiveNotes, setDeletedNotes } =
     useContext(DataContext);
 
   const unArchiveNote = (archive) => {

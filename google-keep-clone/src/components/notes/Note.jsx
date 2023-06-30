@@ -1,5 +1,5 @@
 import { Card, CardActions, CardContent, Tooltip } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
@@ -10,7 +10,7 @@ import PaletteIcon from "@mui/icons-material/Palette";
 import ImageIcon from "@mui/icons-material/Image";
 import ArchiveIcon from "@mui/icons-material/Archive";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useContext } from "react";
+
 import { DataContext } from "../../context/contentProvider";
 
 const StyledCard = styled(Card)`

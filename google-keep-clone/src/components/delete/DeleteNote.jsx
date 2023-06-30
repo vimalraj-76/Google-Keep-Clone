@@ -1,12 +1,11 @@
 import { Card, CardActions, CardContent, Tooltip } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import DeleteForeverRoundedIcon from "@mui/icons-material/DeleteForeverRounded";
 
 import RestoreFromTrashRoundedIcon from "@mui/icons-material/RestoreFromTrashRounded";
-import { useContext } from "react";
 import { DataContext } from "../../context/contentProvider";
 
 const StyledCard = styled(Card)`

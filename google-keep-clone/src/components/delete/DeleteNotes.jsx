@@ -21,7 +21,7 @@ const DeleteNotes = () => {
           <Grid style={{ marginTop: "25px" }} container>
             {deletedNotes.map((deletedNote) => {
               return (
-                <Grid item>
+                <Grid item key={deletedNote.id}>
                   <DeleteNote deletedNote={deletedNote} />
                 </Grid>
               );

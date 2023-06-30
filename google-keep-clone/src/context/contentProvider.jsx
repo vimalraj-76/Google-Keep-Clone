@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useMemo } from "react";
 
 export const DataContext = createContext(null);
 
@@ -37,17 +37,20 @@ const DataProvider = ({ children }) => {
     localStorage.setItem("deletedNotes", JSON.stringify(deletedNotes));
   }, [deletedNotes]);
 
+  const contextValue = useMemo(
+    () => ({
+      notes,
+      setNotes,
+      archiveNotes,
+      setArchiveNotes,
+      deletedNotes,
+      setDeletedNotes,
+    }),
+    [notes, setNotes, archiveNotes, setArchiveNotes, deletedNotes, setDeletedNotes]
+  );
+
   return (
-    <DataContext.Provider
-      value={{
-        notes,
-        setNotes,
-        archiveNotes,
-        setArchiveNotes,
-        deletedNotes,
-        setDeletedNotes,
-      }}
-    >
+    <DataContext.Provider value={contextValue}>
       {children}
     </DataContext.Provider>
   );

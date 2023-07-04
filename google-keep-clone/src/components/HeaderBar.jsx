@@ -13,6 +13,7 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
+import { useState, useEffect } from "react";
 
 const Header = styled(AppBar)`
   z-index: 1201;
@@ -24,6 +25,20 @@ const Header = styled(AppBar)`
 const HeaderBar = ({ open, handleDrawer }) => {
   const logo =
     "https://seeklogo.com/images/G/google-keep-logo-0BC92EBBBD-seeklogo.com.png";
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 600);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <Header open={open}>
       <Toolbar>
@@ -45,25 +60,30 @@ const HeaderBar = ({ open, handleDrawer }) => {
         >
           Google Keep Clone
         </Typography>
-        <Paper
-          component="form"
-          sx={{
-            p: "2px 4px",
-            display: "flex",
-            alignItems: "center",
-            width: "45vw",
-            height: "45px",
-            margin: "auto",
-          }}
-        >
-          <IconButton sx={{ p: "10px" }}>
-            <MenuIcon />
-          </IconButton>
-          <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Search Your Notes" />
-          <IconButton type="button" sx={{ p: "10px" }}>
-            <SearchIcon />
-          </IconButton>
-        </Paper>
+        {!isMobile && (
+          <Paper
+            component="form"
+            sx={{
+              p: "2px 4px",
+              display: "flex",
+              alignItems: "center",
+              width: "45vw",
+              height: "45px",
+              margin: "auto",
+            }}
+          >
+            <IconButton sx={{ p: "10px" }}>
+              <MenuIcon />
+            </IconButton>
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search Your Notes"
+            />
+            <IconButton type="button" sx={{ p: "10px" }}>
+              <SearchIcon />
+            </IconButton>
+          </Paper>
+        )}
         <IconButton size="large" marginLeft="auto" marginRight="20px">
           <Tooltip title="Refresh" placement="bottom">
             <CloudDoneIcon />
